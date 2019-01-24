@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- import Vue.js -->
+    <script src="./assets/vue/vue.min.js"></script>
+    <script src="./assets/vue/vue-router.min.js"></script>
+    <!-- import stylesheet -->
+    <link rel="stylesheet" href="./assets/iview/css/iview.css">
+    <!-- import iView -->
+    <script src="./assets/iview/js/iview.min.js"></script>
+    <style>
+        .drag-able {
+            -webkit-app-region: drag;
+            width: 100%;
+            height: 20px;
+            padding-top: 0;
+            margin-top: 0;
+            background-color: silver
+        }
+        button {
+            -webkit-app-region: no-drag;
+        }
+        #app {
+            font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+            padding: 0 2px 0 10px;
+            margin: 0 2px 0 10px;
+        }
+        .e-item {
+            font-size: 25px!important;
+        }
+    </style>
+    <title>Helper</title>
+</head>
+
+<body>
+    <div class="drag-able"></div>
+    <div id="app">
+        <i-menu mode="horizontal" :theme="defaultTheme" active-name="1">
+            <menu-item name="1">
+                <router-link to="/foo" style=" text-align : center ;text-align : left">
+                    <icon type="ios-clock-outline" size="25"></icon>
+                    <span class="e-item">任务配置</span>
+                </router-link>
+            </menu-item>
+            <menu-item name="2">
+                <router-link to="/bar">
+                    <icon type="ios-speedometer-outline" size="25" ></icon>
+                    <span class="e-item">状态监控</span>
+                </router-link>
+            </menu-item>
+            <router-view></router-view>
+        </i-menu>
+    </div>
+    <script>
+        const router = require('./components/router.js')
+        const __this = new Vue({
+            el: '#app',
+            data: {
+                visible: true,
+                defaultTheme: 'light'
+            },
+            methods: {
+                show: () => {
+                    __this.visible = true
+                }
+            },
+            router
+        })
+    </script>
+</body>
+
+</html>
