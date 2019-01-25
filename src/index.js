@@ -1,10 +1,10 @@
 const electron = require('electron')
-const { app, BrowserWindow } = electron
+const { app, BrowserWindow,ipcMain } = electron
 const glob = require('glob')
 const path = require('path')
 
 let mainWindow = null
-const debug = true
+const debug = true;
 
 function initialize() {
   // 检查是否已经生成了实例
@@ -92,3 +92,15 @@ function loadOtherJs() {
 }
 
 initialize()
+
+/**
+ * 退出应用程序
+ */
+ipcMain.on('quit-application-immediately',(event,args)=> {
+  console.log('leave application backside')
+  leaveApplication()
+})
+
+function leaveApplication() {
+  app.exit()
+}

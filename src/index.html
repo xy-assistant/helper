@@ -16,10 +16,12 @@
         .drag-able {
             -webkit-app-region: drag;
             width: 100%;
-            height: 20px;
+            height: 30px;
             padding-top: 0;
             margin-top: 0;
-            background-color: silver
+            /* background-color: silver; */
+            display: inline-block;
+            text-align: center;
         }
         button {
             -webkit-app-region: no-drag;
@@ -30,30 +32,46 @@
             margin: 0 2px 0 10px;
         }
         .e-item {
-            font-size: 25px!important;
+            font-size: 20px!important;
+        }
+        .max-min-close {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block; 
+            transition: 0.3s;
+            color: red;
+            -webkit-app-region: no-drag;
+            /* margin-top: 2px; */
         }
     </style>
     <title>Helper</title>
 </head>
 
 <body>
-    <div class="drag-able"></div>
     <div id="app">
+        <div class="drag-able">
+            <div class="max-min-close">
+            </div>
+            <div class="max-min-close close">
+                <Icon type="ios-close-circle-outline" size="20"></Icon>
+            </div>
+        </div>
         <i-menu mode="horizontal" :theme="defaultTheme" active-name="1">
-            <menu-item name="1">
-                <router-link to="/foo" style=" text-align : center ;text-align : left">
-                    <icon type="ios-clock-outline" size="25"></icon>
-                    <span class="e-item">任务配置</span>
-                </router-link>
+            <menu-item name="1" to="/task">
+                <icon type="ios-clock-outline" size="25"></icon>
+                <span class="e-item">任务配置</span>
             </menu-item>
-            <menu-item name="2">
-                <router-link to="/bar">
-                    <icon type="ios-speedometer-outline" size="25" ></icon>
-                    <span class="e-item">状态监控</span>
-                </router-link>
+            <menu-item name="2" to="/monitor">
+                <icon type="ios-speedometer-outline" size="25"></icon>
+                <span class="e-item">任务监控</span>
             </menu-item>
-            <router-view></router-view>
+            <menu-item name="3" to="/micro">
+                <icon type="ios-podium-outline" size="25"></icon>
+                <span class="e-item">微报表</span>
+            </menu-item>
         </i-menu>
+        <router-view></router-view>
     </div>
     <script>
         const router = require('./components/router.js')
@@ -71,6 +89,8 @@
             router
         })
     </script>
+    <script src="./renderer/viewevents/viewaction.js"></script>
+    <script src="./renderer/viewevents/eventbinder.js"></script>
 </body>
 
 </html>

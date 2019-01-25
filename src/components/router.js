@@ -12,8 +12,8 @@ const Bar = { template: '<div>bar</div>' }
 // 或者，只是一个组件配置对象。
 // 我们晚点再讨论嵌套路由。
 const routes = [
-  { path: '/foo', component: Foo },
-  { path: '/bar', component: Bar }
+  { path: '/task', component: Foo },
+  { path: '/monitor', component: Bar }
 ]
 
 // 3. 创建 router 实例，然后传 `routes` 配置
